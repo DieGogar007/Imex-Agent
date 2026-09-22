@@ -420,29 +420,7 @@ no (el motor). Escalar es crecer el conocimiento, no reescribir el motor.
 
 ---
 
-## 11. Guion para explicar la solución
-
-1. **Qué es:** un agente en Python que extrae las 15 casillas de la declaración y los datos de la factura, normaliza ambos lados y los contrasta con un catálogo de reglas. Los datos se comparan con código determinista; la descripción de la mercancía y su ortografía, con un modelo de lenguaje que tiene un método básico de respaldo. Salida: JSON con una alerta por hallazgo, con tipo, severidad, valores, fuente, explicación y quién la produjo. Y una interfaz para cualquier persona.
-2. **Cómo está organizado:** carga y validación de archivos, extracción (PDF a diccionario), normalización (formatos distintos a una forma canónica), catálogo de reglas (qué es cada casilla, si es obligatoria, qué documento la respalda), motor de validación y revisor de texto.
-3. **Qué encuentra en la prueba:** 11 alertas. Tres discrepancias reales (número de factura y FOB con dígitos transpuestos, país de origen), un campo obligatorio vacío (bultos), una casilla no validable (peso bruto), tres errores de ortografía y una observación de redacción, y una inconsistencia aritmética que confirma que el error está en el FOB.
-4. **Cómo maneja la incertidumbre:** cada casilla sabe qué documentos la respaldan y en qué orden. Si el soporte formal no está, el agente lo dice: valida contra un documento alterno y marca el resultado como provisional, o declara la casilla no validable. Nunca inventa ni marca OK sin soporte. Y antes de confiar en la factura, verifica que sus propios totales cuadren.
-5. **Por qué no reporta falsos positivos:** compara significados, no cadenas. Lo demuestra el caso "formatos distintos": una declaración correcta escrita de otra forma en cada casilla produce cero discrepancias.
-6. **Cómo se prueba:** 47 pruebas automáticas, cuatro pares de documentos con resultado conocido (uno con las 15 casillas erradas: marca las 15 y sólo esas), y un conjunto de evaluación para el revisor de texto.
-7. **Cómo escala:** el catálogo se vuelve configuración con las ~50 casillas; las reglas DIAN son reglas cruzadas; un extractor por documento, con OCR y modelo cuando el formato varía. El modelo propone, el motor decide, y todo queda trazable.
-
-### Preguntas frecuentes
-
-- **¿Por qué el modelo de lenguaje sólo para la descripción?** Porque es la única casilla de lenguaje. Para montos, fechas y códigos las reglas son más precisas, más baratas y auditables; para decidir si dos descripciones hablan de lo mismo, con sinónimos o en otro idioma, el modelo es mejor.
-- **¿Cómo se evita que el modelo invente?** Responde en un JSON de esquema fijo a temperatura cero, sólo puede citar palabras que estén en el texto, no corrige nada, cada alerta dice quién la produjo, y se mide contra casos conocidos.
-- **¿Por qué la casilla 5 tiene dos alertas?** Son dos hechos independientes: el valor no coincide con la factura, y aunque coincidiera seguiría faltando el certificado de origen, que es el soporte formal.
-- **¿Por qué existe `inconsistencia_interna`?** Porque la casilla 15 coincide con la factura y aun así la declaración está mal: sus componentes no suman. Ningún tipo original lo describe y es una regla de diligenciamiento típica de la DIAN.
-- **¿De dónde salen las explicaciones?** De plantillas escritas en el código, rellenadas con los datos extraídos; no las redacta una IA. La única excepción, marcada, es la explicación del modelo sobre la descripción.
-- **¿Y si el usuario sube un archivo equivocado?** La capa de carga lo detecta antes de revisar y produce un mensaje con qué pasó y qué hacer, nunca un error técnico.
-- **¿Funciona con documentos en inglés?** Los datos sí (fechas, países, unidades, montos); las etiquetas de los formularios todavía no, y la comparación de descripciones entre idiomas la resuelve el modelo de lenguaje.
-
----
-
-## 12. Estructura del repositorio
+## 11. Estructura del repositorio
 
 ```
 imex-agente-revisor/
