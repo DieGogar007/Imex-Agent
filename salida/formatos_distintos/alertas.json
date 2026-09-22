@@ -1,0 +1,32 @@
+[
+  {
+    "casilla": 5,
+    "campo": "País de origen",
+    "tipo": "sin_documento_soporte",
+    "severidad": "media",
+    "valor_declaracion": "China",
+    "valor_fuente": "República Popular China",
+    "fuente": "factura_comercial",
+    "detalle": "La casilla se validó contra la factura comercial porque su soporte formal (Certificado de origen) no está en la carpeta. El resultado es provisional hasta contrastarla con ese documento."
+  },
+  {
+    "casilla": 10,
+    "campo": "Número de bultos",
+    "tipo": "sin_documento_soporte",
+    "severidad": "media",
+    "valor_declaracion": "25 bultos",
+    "valor_fuente": "25",
+    "fuente": "factura_comercial",
+    "detalle": "La casilla se validó contra la factura comercial porque su soporte formal (Lista de empaque) no está en la carpeta. El resultado es provisional hasta contrastarla con ese documento."
+  },
+  {
+    "casilla": 11,
+    "campo": "Peso bruto (kg)",
+    "tipo": "sin_documento_soporte",
+    "severidad": "media",
+    "valor_declaracion": "1250 kg",
+    "valor_fuente": "1.250,00",
+    "fuente": "factura_comercial",
+    "detalle": "La casilla se validó contra la factura comercial porque su soporte formal (Lista de empaque) no está en la carpeta. El resultado es provisional hasta contrastarla con ese documento."
+  }
+]

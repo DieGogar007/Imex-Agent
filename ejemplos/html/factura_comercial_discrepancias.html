@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><title>factura.html</title>
+<style>
+  @page { size: Letter; margin: 0.385in; }
+  body { font-family: "Liberation Sans", Arial, Helvetica, sans-serif; color: #1a1a1a; font-size: 11.5px; margin: 0; padding: 0 42px; }
+  table { border-collapse: collapse; width: 100%; }
+  .cab td { vertical-align: top; padding: 0; }
+  .empresa { font-size: 19px; font-weight: bold; color: #1f3864; margin-top: 6px; }
+  .dir { color: #555; font-size: 11px; line-height: 17px; }
+  .der { text-align: right; }
+  .titulo { font-size: 20px; font-weight: bold; color: #1f3864; margin-top: 6px; }
+  .der div { line-height: 18px; }
+  .barra { border-top: 3px solid #1f3864; margin: 14px 0 26px; }
+  .partes td { vertical-align: top; width: 50%; padding: 0 0 0 13px; border-left: 3px solid #d0d0d0; }
+  .rotulo { color: #888; font-size: 10.5px; font-weight: bold; margin-bottom: 4px; }
+  .nombre { font-size: 13px; font-weight: bold; margin-bottom: 4px; }
+  .partes div.l { color: #333; line-height: 17px; }
+  .cond { margin-top: 26px; }
+  .cond th, .cond td { border: 1px solid #d0d0d0; padding: 5px 10px; text-align: left; }
+  .cond th { background: #f2f4f7; color: #1f3864; font-weight: bold; width: 124px; }
+  .items { margin-top: 18px; table-layout: fixed; }
+  .items th { background: #1f3864; color: #fff; font-size: 11px; padding: 6px 8px; text-align: left; border: 1px solid #1f3864; }
+  .items td { border: 1px solid #d8d8d8; padding: 6px 8px; vertical-align: middle; }
+  .items td.r, .items th.r { text-align: right; }
+  .items td.c { text-align: center; }
+  .totales { width: 270px; margin: 20px 0 0 auto; font-size: 12px; }
+  .totales td { padding: 5px 6px; border-bottom: 1px solid #e5e5e5; }
+  .totales td.r { text-align: right; }
+  .totales tr.cif td { font-size: 13.5px; font-weight: bold; color: #1f3864; border-bottom: none; padding-top: 10px; }
+  .nota { margin-top: 28px; background: #f7f7f7; border: 1px solid #e0e0e0; padding: 10px 14px; line-height: 17px; }
+  .footer { display: flex; justify-content: space-between; color: #888; font-size: 10.5px; margin-top: 44px; }
+</style></head>
+<body>
+  <table class="cab"><tr>
+    <td>
+      <div class="empresa">SHENZHEN POWERTECH MOTORS CO., LTD.</div>
+      <div class="dir">No. 88 Baoan Industrial Avenue, Bao'an District</div>
+      <div class="dir">Shenzhen, Guangdong, China 518101</div>
+      <div class="dir">Tel: +86 755 8891 2200 &nbsp;·&nbsp; export@powertechmotors.cn</div>
+    </td>
+    <td class="der">
+      <div class="titulo">COMMERCIAL INVOICE</div>
+      <div>No. FC-2026-00417</div>
+      <div>Fecha de emisión: 15 de junio de 2026</div>
+    </td>
+  </tr></table>
+  <div class="barra"></div>
+  <table class="partes"><tr>
+    <td><div class="rotulo">EXPORTADOR / SHIPPER</div><div class="nombre">Shenzhen PowerTech Motors Co., Ltd.</div>
+        <div class="l">No. 88 Baoan Industrial Avenue</div><div class="l">Shenzhen, Guangdong, China 518101</div></td>
+    <td><div class="rotulo">IMPORTADOR / CONSIGNEE</div><div class="nombre">Distribuidora Andina S.A.S.</div>
+        <div class="l">NIT 900.123.456-7</div><div class="l">Calle 24 No. 68-45, Bodega 12</div><div class="l">Bogotá D.C., Colombia</div></td>
+  </tr></table>
+  <table class="cond">
+    <tr><th>País de origen</th><td>República Popular China</td><th>País de embarque</th><td>China</td></tr>
+    <tr><th>Incoterm</th><td>CIF Cartagena, Colombia (Incoterms 2020)</td><th>Puerto de destino</th><td>Cartagena, Colombia</td></tr>
+    <tr><th>Moneda</th><td>Dólares de los Estados Unidos (USD)</td><th>Forma de pago</th><td>Transferencia bancaria — 30 días</td></tr>
+  </table>
+  <table class="items">
+    <colgroup><col style="width:65px"><col style="width:289px"><col style="width:92px"><col style="width:105px"><col style="width:106px"></colgroup>
+    <thead><tr><th>Ítem</th><th>Descripción de la mercancía</th><th>Cantidad</th><th class="r">Precio unitario (USD)</th><th class="r">Subtotal (USD)</th></tr></thead>
+    <tbody><tr><td class="c">1</td><td>Motores eléctricos trifásicos de baja potencia (&lt; 0.75 kW), uso industrial, modelo PTM-075T</td><td>500 unidades</td><td class="r">36.90</td><td class="r">18,450.00</td></tr></tbody>
+  </table>
+  <table class="totales">
+    <tr><td>Valor FOB</td><td class="r">USD 18,450.00</td></tr>
+    <tr><td>Flete internacional</td><td class="r">USD 620.00</td></tr>
+    <tr><td>Seguro</td><td class="r">USD 95.00</td></tr>
+    <tr class="cif"><td>Valor CIF total</td><td class="r">USD 19,165.00</td></tr>
+  </table>
+  <div class="nota">Mercancía embalada en <b>25 cajas de cartón (bultos)</b>, 20 unidades por caja. Peso bruto total: 1.310,00 kg. Detalle de pesos y dimensiones por bulto: ver <b>lista de empaque (packing list)</b> adjunta por separado.</div>
+  <div class="footer"><span>Shenzhen PowerTech Motors Co., Ltd. — Commercial Invoice FC-2026-00417</span><span>Página 1 de 1</span></div>
+</body></html>

@@ -1,0 +1,111 @@
+[
+  {
+    "casilla": 2,
+    "campo": "Fecha de factura",
+    "tipo": "campo_faltante",
+    "severidad": "alta",
+    "valor_declaracion": "(sin diligenciar)",
+    "valor_fuente": "3 de julio de 2026",
+    "fuente": "factura_comercial",
+    "detalle": "La casilla es obligatoria y quedó sin diligenciar. Referencia disponible en la factura comercial: 3 de julio de 2026."
+  },
+  {
+    "casilla": 5,
+    "campo": "País de origen",
+    "tipo": "sin_documento_soporte",
+    "severidad": "media",
+    "valor_declaracion": "República Popular China",
+    "valor_fuente": "República Popular China",
+    "fuente": "factura_comercial",
+    "detalle": "La casilla se validó contra la factura comercial porque su soporte formal (Certificado de origen) no está en la carpeta. El resultado es provisional hasta contrastarla con ese documento."
+  },
+  {
+    "casilla": 6,
+    "campo": "Incoterm",
+    "tipo": "campo_faltante",
+    "severidad": "alta",
+    "valor_declaracion": "(sin diligenciar)",
+    "valor_fuente": "CIF Cartagena, Colombia(Incoterms 2020)",
+    "fuente": "factura_comercial",
+    "detalle": "La casilla es obligatoria y quedó sin diligenciar. Referencia disponible en la factura comercial: CIF Cartagena, Colombia(Incoterms 2020)."
+  },
+  {
+    "casilla": 7,
+    "campo": "Moneda de negociación",
+    "tipo": "campo_faltante",
+    "severidad": "alta",
+    "valor_declaracion": "(sin diligenciar)",
+    "valor_fuente": "Dólares de los Estados Unidos(USD)",
+    "fuente": "factura_comercial",
+    "detalle": "La casilla es obligatoria y quedó sin diligenciar. Referencia disponible en la factura comercial: Dólares de los Estados Unidos(USD)."
+  },
+  {
+    "casilla": 8,
+    "campo": "Descripción de la mercancía",
+    "tipo": "ortografia",
+    "severidad": "baja",
+    "valor_declaracion": "electricos",
+    "valor_fuente": null,
+    "fuente": null,
+    "detalle": "[acentuacion] «electricos» debería llevar tilde: «eléctricos».",
+    "sugerencia": "eléctricos",
+    "analisis": "heuristico"
+  },
+  {
+    "casilla": 8,
+    "campo": "Descripción de la mercancía",
+    "tipo": "ortografia",
+    "severidad": "baja",
+    "valor_declaracion": "Motores electricos trifásicos de baja potencia, uso industrial, modelos PTM-075T y PTM-150T",
+    "valor_fuente": "Motores eléctricos trifásicos de baja potencia (< 0.75kW), uso industrial, modelo PTM-075T | Motores eléctricos trifásicos de media potencia (1.5kW), uso industrial, modelo PTM-150T",
+    "fuente": "factura_comercial",
+    "detalle": "[redaccion] La descripción es compatible con la factura pero menos específica: omite «0.75kW», «media», «1.5kW». Se recomienda incluir modelo y características técnicas para facilitar la clasificación arancelaria.",
+    "analisis": "heuristico"
+  },
+  {
+    "casilla": 10,
+    "campo": "Número de bultos",
+    "tipo": "sin_documento_soporte",
+    "severidad": "media",
+    "valor_declaracion": "25",
+    "valor_fuente": "25",
+    "fuente": "factura_comercial",
+    "detalle": "La casilla se validó contra la factura comercial porque su soporte formal (Lista de empaque) está en la carpeta pero esta versión del agente sólo procesa la factura comercial. El resultado es provisional hasta contrastarla con ese documento."
+  },
+  {
+    "casilla": 11,
+    "campo": "Peso bruto (kg)",
+    "tipo": "sin_documento_soporte",
+    "severidad": "media",
+    "valor_declaracion": "1.290,00 kg",
+    "valor_fuente": "1.290,00",
+    "fuente": "factura_comercial",
+    "detalle": "La casilla se validó contra la factura comercial porque su soporte formal (Lista de empaque) está en la carpeta pero esta versión del agente sólo procesa la factura comercial. El resultado es provisional hasta contrastarla con ese documento."
+  },
+  {
+    "casilla": 15,
+    "campo": "Valor CIF total (USD)",
+    "tipo": "discrepancia_valor",
+    "severidad": "alta",
+    "valor_declaracion": "22.630,00",
+    "valor_fuente": "22,360.00",
+    "fuente": "factura_comercial",
+    "detalle": "El valor declarado (22.630,00) no coincide con el de la factura comercial (22,360.00). Diferencia: 270,00. Los dígitos son los mismos en distinto orden: posible transposición al digitar."
+  },
+  {
+    "casilla": 15,
+    "campo": "Valor CIF total (USD)",
+    "tipo": "inconsistencia_interna",
+    "severidad": "alta",
+    "valor_declaracion": "22.630,00",
+    "valor_fuente": "22.360,00",
+    "fuente": "declaracion",
+    "detalle": "Valor CIF total = FOB + flete + seguro: 21.550,00 (casilla 12) + 700,00 (casilla 13) + 110,00 (casilla 14) = 22.360,00, pero la casilla 15 declara 22.630,00. Diferencia: -270,00. La(s) casilla(s) 15 ya presenta(n) discrepancia frente a la factura; el error probablemente está allí.",
+    "casillas_relacionadas": [
+      12,
+      13,
+      14,
+      15
+    ]
+  }
+]

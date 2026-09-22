@@ -1,0 +1,634 @@
+{
+  "metadata": {
+    "fecha_revision": "2026-09-22T11:15:59",
+    "declaracion": "ejemplos\\declaracion_importacion_discrepancias.pdf",
+    "factura": "ejemplos\\factura_comercial_discrepancias.pdf",
+    "referencia_interna": "IMP-2026-0639",
+    "declarante": "Distribuidora Andina S.A.S."
+  },
+  "documentos_soporte": {
+    "factura_comercial": {
+      "nombre": "Factura comercial",
+      "disponible": true,
+      "detalle": "FC-2026-00417.pdf"
+    },
+    "lista_empaque": {
+      "nombre": "Lista de empaque",
+      "disponible": false,
+      "detalle": "no se encontró en la carpeta"
+    },
+    "certificado_origen": {
+      "nombre": "Certificado de origen",
+      "disponible": false,
+      "detalle": "no se encontró en la carpeta"
+    },
+    "documento_transporte": {
+      "nombre": "BL / documento de transporte",
+      "disponible": false,
+      "detalle": "no se encontró en la carpeta"
+    }
+  },
+  "extraccion": {
+    "declaracion": [
+      {
+        "numero": 1,
+        "etiqueta": "Número de factura comercial",
+        "valor": "FC-2026-00174"
+      },
+      {
+        "numero": 2,
+        "etiqueta": "Fecha de factura",
+        "valor": "16 de junio de 2026"
+      },
+      {
+        "numero": 3,
+        "etiqueta": "Exportador",
+        "valor": "Guangzhou PowerTech Motors Co., Ltd."
+      },
+      {
+        "numero": 4,
+        "etiqueta": "Importador",
+        "valor": "Distribuidora Andina S.A.S. — NIT 900.123.465-7"
+      },
+      {
+        "numero": 5,
+        "etiqueta": "País de origen",
+        "valor": "Vietnam"
+      },
+      {
+        "numero": 6,
+        "etiqueta": "Incoterm",
+        "valor": "FOB Shenzhen, China"
+      },
+      {
+        "numero": 7,
+        "etiqueta": "Moneda de negociación",
+        "valor": "EUR"
+      },
+      {
+        "numero": 8,
+        "etiqueta": "Descripción de la mercancía",
+        "valor": "Motores electricos monofasicos de alta potencai, uso domestico"
+      },
+      {
+        "numero": 9,
+        "etiqueta": "Cantidad (unidades)",
+        "valor": "450 unidades"
+      },
+      {
+        "numero": 10,
+        "etiqueta": "Número de bultos",
+        "valor": "30"
+      },
+      {
+        "numero": 11,
+        "etiqueta": "Peso bruto (kg)",
+        "valor": "1.250,00 kg"
+      },
+      {
+        "numero": 12,
+        "etiqueta": "Valor FOB (USD)",
+        "valor": "17.450,00"
+      },
+      {
+        "numero": 13,
+        "etiqueta": "Flete (USD)",
+        "valor": "650,00"
+      },
+      {
+        "numero": 14,
+        "etiqueta": "Seguro (USD)",
+        "valor": "59,00"
+      },
+      {
+        "numero": 15,
+        "etiqueta": "Valor CIF total (USD)",
+        "valor": "18.159,00"
+      }
+    ],
+    "factura": {
+      "archivo": "ejemplos\\factura_comercial_discrepancias.pdf",
+      "numero": "FC-2026-00417",
+      "fecha": "15 de junio de 2026",
+      "exportador": {
+        "nombre": "Shenzhen PowerTech Motors Co., Ltd.",
+        "nit": null,
+        "direccion": [
+          "No. 88 Baoan Industrial Avenue",
+          "Shenzhen, Guangdong, China 518101"
+        ],
+        "texto": "Shenzhen PowerTech Motors Co., Ltd. No. 88 Baoan Industrial Avenue Shenzhen, Guangdong, China 518101"
+      },
+      "importador": {
+        "nombre": "Distribuidora Andina S.A.S.",
+        "nit": "9001234567",
+        "direccion": [
+          "NIT 900.123.456-7",
+          "Calle 24 No. 68-45, Bodega 12",
+          "Bogotá D.C., Colombia"
+        ],
+        "texto": "Distribuidora Andina S.A.S. NIT 900.123.456-7 Calle 24 No. 68-45, Bodega 12 Bogotá D.C., Colombia"
+      },
+      "pais_origen": "República Popular China",
+      "pais_embarque": "China",
+      "incoterm": "CIF Cartagena, Colombia(Incoterms 2020)",
+      "puerto_destino": "Cartagena, Colombia",
+      "moneda": "Dólares de los Estados Unidos(USD)",
+      "forma_pago": "Transferencia bancaria —30 días",
+      "items": [
+        {
+          "item": 1,
+          "descripcion": "Motores eléctricos trifásicos de baja potencia (< 0.75kW), uso industrial, modelo PTM-075T",
+          "cantidad": "500",
+          "unidad": "unidades",
+          "precio_unitario": "36.90",
+          "subtotal": "18,450.00"
+        }
+      ],
+      "descripcion": "Motores eléctricos trifásicos de baja potencia (< 0.75kW), uso industrial, modelo PTM-075T",
+      "cantidad": "500 unidades",
+      "fob": "18,450.00",
+      "flete": "620.00",
+      "seguro": "95.00",
+      "cif": "19,165.00",
+      "bultos": "25",
+      "unidades_por_bulto": "20",
+      "peso_bruto": "1.310,00",
+      "remite_lista_empaque": true,
+      "observaciones": "Mercancía embalada en 25 cajas de cartón (bultos), 20 unidades por caja. Peso bruto total: 1.310,00 kg. Detalle de\npesos y dimensiones por bulto: ver lista de empaque (packing list) adjunta por separado."
+    }
+  },
+  "resumen": {
+    "total_alertas": 22,
+    "por_tipo": {
+      "discrepancia_valor": 15,
+      "sin_documento_soporte": 3,
+      "ortografia": 4
+    },
+    "por_severidad": {
+      "alta": 15,
+      "media": 3,
+      "baja": 4
+    },
+    "casillas_con_alerta": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "casillas_sin_alerta": []
+  },
+  "resumen_casillas": [
+    {
+      "casilla": 1,
+      "campo": "Número de factura comercial",
+      "valor_declaracion": "FC-2026-00174",
+      "soportes": [
+        "Factura comercial"
+      ],
+      "validado_contra": "Factura comercial",
+      "estado": "discrepancia",
+      "alertas": 1
+    },
+    {
+      "casilla": 2,
+      "campo": "Fecha de factura",
+      "valor_declaracion": "16 de junio de 2026",
+      "soportes": [
+        "Factura comercial"
+      ],
+      "validado_contra": "Factura comercial",
+      "estado": "discrepancia",
+      "alertas": 1
+    },
+    {
+      "casilla": 3,
+      "campo": "Exportador",
+      "valor_declaracion": "Guangzhou PowerTech Motors Co., Ltd.",
+      "soportes": [
+        "Factura comercial"
+      ],
+      "validado_contra": "Factura comercial",
+      "estado": "discrepancia",
+      "alertas": 1
+    },
+    {
+      "casilla": 4,
+      "campo": "Importador",
+      "valor_declaracion": "Distribuidora Andina S.A.S. — NIT 900.123.465-7",
+      "soportes": [
+        "Factura comercial"
+      ],
+      "validado_contra": "Factura comercial",
+      "estado": "discrepancia",
+      "alertas": 1
+    },
+    {
+      "casilla": 5,
+      "campo": "País de origen",
+      "valor_declaracion": "Vietnam",
+      "soportes": [
+        "Certificado de origen",
+        "Factura comercial"
+      ],
+      "validado_contra": "Factura comercial",
+      "estado": "discrepancia",
+      "alertas": 2
+    },
+    {
+      "casilla": 6,
+      "campo": "Incoterm",
+      "valor_declaracion": "FOB Shenzhen, China",
+      "soportes": [
+        "Factura comercial"
+      ],
+      "validado_contra": "Factura comercial",
+      "estado": "discrepancia",
+      "alertas": 1
+    },
+    {
+      "casilla": 7,
+      "campo": "Moneda de negociación",
+      "valor_declaracion": "EUR",
+      "soportes": [
+        "Factura comercial"
+      ],
+      "validado_contra": "Factura comercial",
+      "estado": "discrepancia",
+      "alertas": 1
+    },
+    {
+      "casilla": 8,
+      "campo": "Descripción de la mercancía",
+      "valor_declaracion": "Motores electricos monofasicos de alta potencai, uso domestico",
+      "soportes": [
+        "Factura comercial"
+      ],
+      "validado_contra": "Factura comercial",
+      "estado": "discrepancia",
+      "alertas": 1
+    },
+    {
+      "casilla": 9,
+      "campo": "Cantidad (unidades)",
+      "valor_declaracion": "450 unidades",
+      "soportes": [
+        "Factura comercial"
+      ],
+      "validado_contra": "Factura comercial",
+      "estado": "discrepancia",
+      "alertas": 1
+    },
+    {
+      "casilla": 10,
+      "campo": "Número de bultos",
+      "valor_declaracion": "30",
+      "soportes": [
+        "Lista de empaque",
+        "Factura comercial"
+      ],
+      "validado_contra": "Factura comercial",
+      "estado": "discrepancia",
+      "alertas": 2
+    },
+    {
+      "casilla": 11,
+      "campo": "Peso bruto (kg)",
+      "valor_declaracion": "1.250,00 kg",
+      "soportes": [
+        "Lista de empaque",
+        "BL / documento de transporte",
+        "Factura comercial"
+      ],
+      "validado_contra": "Factura comercial",
+      "estado": "discrepancia",
+      "alertas": 2
+    },
+    {
+      "casilla": 12,
+      "campo": "Valor FOB (USD)",
+      "valor_declaracion": "17.450,00",
+      "soportes": [
+        "Factura comercial"
+      ],
+      "validado_contra": "Factura comercial",
+      "estado": "discrepancia",
+      "alertas": 1
+    },
+    {
+      "casilla": 13,
+      "campo": "Flete (USD)",
+      "valor_declaracion": "650,00",
+      "soportes": [
+        "Factura comercial",
+        "BL / documento de transporte"
+      ],
+      "validado_contra": "Factura comercial",
+      "estado": "discrepancia",
+      "alertas": 1
+    },
+    {
+      "casilla": 14,
+      "campo": "Seguro (USD)",
+      "valor_declaracion": "59,00",
+      "soportes": [
+        "Factura comercial"
+      ],
+      "validado_contra": "Factura comercial",
+      "estado": "discrepancia",
+      "alertas": 1
+    },
+    {
+      "casilla": 15,
+      "campo": "Valor CIF total (USD)",
+      "valor_declaracion": "18.159,00",
+      "soportes": [
+        "Factura comercial"
+      ],
+      "validado_contra": "Factura comercial",
+      "estado": "discrepancia",
+      "alertas": 1
+    }
+  ],
+  "verificaciones_factura": [
+    {
+      "regla": "subtotal ítem 1 = cantidad × precio unitario",
+      "cumple": true,
+      "detalle": "500 × 36.90 = 18.450,00 vs subtotal 18.450,00"
+    },
+    {
+      "regla": "FOB = suma de subtotales",
+      "cumple": true,
+      "detalle": "suma 18.450,00 vs FOB 18.450,00"
+    },
+    {
+      "regla": "CIF = FOB + flete + seguro",
+      "cumple": true,
+      "detalle": "18.450,00 + 620,00 + 95,00 = 19.165,00 vs CIF 19.165,00"
+    }
+  ],
+  "analisis_texto": {
+    "revisor": "heuristico",
+    "avisos": [],
+    "casillas": {
+      "8": {
+        "equivalencia": "distinta",
+        "confianza": 0.5,
+        "explicacion": "50% de los términos de la declaración aparecen en la descripción de la factura.",
+        "terminos_omitidos": [
+          "trifásicos",
+          "baja",
+          "0.75kW",
+          "industrial",
+          "modelo",
+          "PTM-075T"
+        ],
+        "hallazgos": 4,
+        "origen": "heuristico"
+      }
+    }
+  },
+  "alertas": [
+    {
+      "casilla": 1,
+      "campo": "Número de factura comercial",
+      "tipo": "discrepancia_valor",
+      "severidad": "alta",
+      "valor_declaracion": "FC-2026-00174",
+      "valor_fuente": "FC-2026-00417",
+      "fuente": "factura_comercial",
+      "detalle": "El valor declarado (FC-2026-00174) no coincide con el de la factura comercial (FC-2026-00417). Los dígitos son los mismos en distinto orden: posible transposición al digitar. El archivo de la carpeta de soporte se llama «FC-2026-00417.pdf», lo que confirma el número de la factura."
+    },
+    {
+      "casilla": 2,
+      "campo": "Fecha de factura",
+      "tipo": "discrepancia_valor",
+      "severidad": "alta",
+      "valor_declaracion": "16 de junio de 2026",
+      "valor_fuente": "15 de junio de 2026",
+      "fuente": "factura_comercial",
+      "detalle": "El valor declarado (16 de junio de 2026) no coincide con el de la factura comercial (15 de junio de 2026). [normalizado: 2026-06-16 vs 2026-06-15]"
+    },
+    {
+      "casilla": 3,
+      "campo": "Exportador",
+      "tipo": "discrepancia_valor",
+      "severidad": "alta",
+      "valor_declaracion": "Guangzhou PowerTech Motors Co., Ltd.",
+      "valor_fuente": "Shenzhen PowerTech Motors Co., Ltd.",
+      "fuente": "factura_comercial",
+      "detalle": "El valor declarado (Guangzhou PowerTech Motors Co., Ltd.) no coincide con el de la factura comercial (Shenzhen PowerTech Motors Co., Ltd.)."
+    },
+    {
+      "casilla": 4,
+      "campo": "Importador",
+      "tipo": "discrepancia_valor",
+      "severidad": "alta",
+      "valor_declaracion": "Distribuidora Andina S.A.S. — NIT 900.123.465-7",
+      "valor_fuente": "Distribuidora Andina S.A.S. — NIT 9001234567",
+      "fuente": "factura_comercial",
+      "detalle": "El valor declarado (Distribuidora Andina S.A.S. — NIT 900.123.465-7) no coincide con el de la factura comercial (Distribuidora Andina S.A.S. — NIT 9001234567). El nit difiere (9001234657 vs 9001234567)."
+    },
+    {
+      "casilla": 5,
+      "campo": "País de origen",
+      "tipo": "discrepancia_valor",
+      "severidad": "alta",
+      "valor_declaracion": "Vietnam",
+      "valor_fuente": "República Popular China",
+      "fuente": "factura_comercial",
+      "detalle": "El valor declarado (Vietnam) no coincide con el de la factura comercial (República Popular China). [normalizado: VN vs CN]"
+    },
+    {
+      "casilla": 5,
+      "campo": "País de origen",
+      "tipo": "sin_documento_soporte",
+      "severidad": "media",
+      "valor_declaracion": "Vietnam",
+      "valor_fuente": "República Popular China",
+      "fuente": "factura_comercial",
+      "detalle": "La casilla se validó contra la factura comercial porque su soporte formal (Certificado de origen) no está en la carpeta. El resultado es provisional hasta contrastarla con ese documento."
+    },
+    {
+      "casilla": 6,
+      "campo": "Incoterm",
+      "tipo": "discrepancia_valor",
+      "severidad": "alta",
+      "valor_declaracion": "FOB Shenzhen, China",
+      "valor_fuente": "CIF Cartagena, Colombia(Incoterms 2020)",
+      "fuente": "factura_comercial",
+      "detalle": "El valor declarado (FOB Shenzhen, China) no coincide con el de la factura comercial (CIF Cartagena, Colombia(Incoterms 2020)). El término difiere (FOB vs CIF). [normalizado: FOB shenzhen china vs CIF cartagena colombia]"
+    },
+    {
+      "casilla": 7,
+      "campo": "Moneda de negociación",
+      "tipo": "discrepancia_valor",
+      "severidad": "alta",
+      "valor_declaracion": "EUR",
+      "valor_fuente": "Dólares de los Estados Unidos(USD)",
+      "fuente": "factura_comercial",
+      "detalle": "El valor declarado (EUR) no coincide con el de la factura comercial (Dólares de los Estados Unidos(USD)). [normalizado: EUR vs USD]"
+    },
+    {
+      "casilla": 8,
+      "campo": "Descripción de la mercancía",
+      "tipo": "discrepancia_valor",
+      "severidad": "alta",
+      "valor_declaracion": "Motores electricos monofasicos de alta potencai, uso domestico",
+      "valor_fuente": "Motores eléctricos trifásicos de baja potencia (< 0.75kW), uso industrial, modelo PTM-075T",
+      "fuente": "factura_comercial",
+      "detalle": "El valor declarado (Motores electricos monofasicos de alta potencai, uso domestico) no coincide con el de la factura comercial (Motores eléctricos trifásicos de baja potencia (< 0.75kW), uso industrial, modelo PTM-075T). 50% de los términos de la declaración aparecen en la descripción de la factura.",
+      "analisis": "heuristico"
+    },
+    {
+      "casilla": 8,
+      "campo": "Descripción de la mercancía",
+      "tipo": "ortografia",
+      "severidad": "baja",
+      "valor_declaracion": "electricos",
+      "valor_fuente": null,
+      "fuente": null,
+      "detalle": "[acentuacion] «electricos» debería llevar tilde: «eléctricos».",
+      "sugerencia": "eléctricos",
+      "analisis": "heuristico"
+    },
+    {
+      "casilla": 8,
+      "campo": "Descripción de la mercancía",
+      "tipo": "ortografia",
+      "severidad": "baja",
+      "valor_declaracion": "monofasicos",
+      "valor_fuente": null,
+      "fuente": null,
+      "detalle": "[acentuacion] «monofasicos» debería llevar tilde: «monofásicos».",
+      "sugerencia": "monofásicos",
+      "analisis": "heuristico"
+    },
+    {
+      "casilla": 8,
+      "campo": "Descripción de la mercancía",
+      "tipo": "ortografia",
+      "severidad": "baja",
+      "valor_declaracion": "potencai",
+      "valor_fuente": null,
+      "fuente": null,
+      "detalle": "[error_tipografico] «potencai» parece un error de digitación; la palabra esperada es «potencia».",
+      "sugerencia": "potencia",
+      "analisis": "heuristico"
+    },
+    {
+      "casilla": 8,
+      "campo": "Descripción de la mercancía",
+      "tipo": "ortografia",
+      "severidad": "baja",
+      "valor_declaracion": "domestico",
+      "valor_fuente": null,
+      "fuente": null,
+      "detalle": "[acentuacion] «domestico» debería llevar tilde: «doméstico».",
+      "sugerencia": "doméstico",
+      "analisis": "heuristico"
+    },
+    {
+      "casilla": 9,
+      "campo": "Cantidad (unidades)",
+      "tipo": "discrepancia_valor",
+      "severidad": "alta",
+      "valor_declaracion": "450 unidades",
+      "valor_fuente": "500 unidades",
+      "fuente": "factura_comercial",
+      "detalle": "El valor declarado (450 unidades) no coincide con el de la factura comercial (500 unidades). Diferencia: -50,00."
+    },
+    {
+      "casilla": 10,
+      "campo": "Número de bultos",
+      "tipo": "discrepancia_valor",
+      "severidad": "alta",
+      "valor_declaracion": "30",
+      "valor_fuente": "25",
+      "fuente": "factura_comercial",
+      "detalle": "El valor declarado (30) no coincide con el de la factura comercial (25). Diferencia: 5,00."
+    },
+    {
+      "casilla": 10,
+      "campo": "Número de bultos",
+      "tipo": "sin_documento_soporte",
+      "severidad": "media",
+      "valor_declaracion": "30",
+      "valor_fuente": "25",
+      "fuente": "factura_comercial",
+      "detalle": "La casilla se validó contra la factura comercial porque su soporte formal (Lista de empaque) no está en la carpeta. El resultado es provisional hasta contrastarla con ese documento."
+    },
+    {
+      "casilla": 11,
+      "campo": "Peso bruto (kg)",
+      "tipo": "discrepancia_valor",
+      "severidad": "alta",
+      "valor_declaracion": "1.250,00 kg",
+      "valor_fuente": "1.310,00",
+      "fuente": "factura_comercial",
+      "detalle": "El valor declarado (1.250,00 kg) no coincide con el de la factura comercial (1.310,00). Diferencia: -60,00."
+    },
+    {
+      "casilla": 11,
+      "campo": "Peso bruto (kg)",
+      "tipo": "sin_documento_soporte",
+      "severidad": "media",
+      "valor_declaracion": "1.250,00 kg",
+      "valor_fuente": "1.310,00",
+      "fuente": "factura_comercial",
+      "detalle": "La casilla se validó contra la factura comercial porque su soporte formal (Lista de empaque) no está en la carpeta. El resultado es provisional hasta contrastarla con ese documento."
+    },
+    {
+      "casilla": 12,
+      "campo": "Valor FOB (USD)",
+      "tipo": "discrepancia_valor",
+      "severidad": "alta",
+      "valor_declaracion": "17.450,00",
+      "valor_fuente": "18,450.00",
+      "fuente": "factura_comercial",
+      "detalle": "El valor declarado (17.450,00) no coincide con el de la factura comercial (18,450.00). Diferencia: -1.000,00."
+    },
+    {
+      "casilla": 13,
+      "campo": "Flete (USD)",
+      "tipo": "discrepancia_valor",
+      "severidad": "alta",
+      "valor_declaracion": "650,00",
+      "valor_fuente": "620.00",
+      "fuente": "factura_comercial",
+      "detalle": "El valor declarado (650,00) no coincide con el de la factura comercial (620.00). Diferencia: 30,00."
+    },
+    {
+      "casilla": 14,
+      "campo": "Seguro (USD)",
+      "tipo": "discrepancia_valor",
+      "severidad": "alta",
+      "valor_declaracion": "59,00",
+      "valor_fuente": "95.00",
+      "fuente": "factura_comercial",
+      "detalle": "El valor declarado (59,00) no coincide con el de la factura comercial (95.00). Diferencia: -36,00. Los dígitos son los mismos en distinto orden: posible transposición al digitar."
+    },
+    {
+      "casilla": 15,
+      "campo": "Valor CIF total (USD)",
+      "tipo": "discrepancia_valor",
+      "severidad": "alta",
+      "valor_declaracion": "18.159,00",
+      "valor_fuente": "19,165.00",
+      "fuente": "factura_comercial",
+      "detalle": "El valor declarado (18.159,00) no coincide con el de la factura comercial (19,165.00). Diferencia: -1.006,00."
+    }
+  ],
+  "avisos": []
+}

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Revisor de declaraciones de importación</title>
+<style>
+  :root {
+    --azul: #1f3864; --azul-claro: #e8edf6; --rojo: #b3261e; --rojo-claro: #fdecea;
+    --ambar: #8a5a00; --ambar-claro: #fff4d6; --verde: #1e7b3a; --verde-claro: #e6f4ea;
+    --info: #2b5fa8; --info-claro: #e7f0fb; --gris: #555; --borde: #d8dbe2; --fondo: #f4f6fa;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: "Segoe UI", Arial, Helvetica, sans-serif; font-size: 17px; line-height: 1.5; color: #1a1a1a; background: var(--fondo); }
+  header { background: var(--azul); color: #fff; padding: 22px 16px; }
+  header .contenido { max-width: 980px; margin: 0 auto; }
+  header h1 { margin: 0; font-size: 26px; }
+  header p { margin: 6px 0 0; opacity: .92; }
+  main { max-width: 980px; margin: 0 auto; padding: 20px 16px 60px; }
+  section.tarjeta { background: #fff; border: 1px solid var(--borde); border-radius: 12px; padding: 22px; margin-bottom: 20px; }
+  h2 { font-size: 21px; margin: 0 0 12px; color: var(--azul); }
+  h3 { font-size: 18px; margin: 18px 0 8px; color: var(--azul); }
+  p { margin: 0 0 10px; }
+  ol.pasos { padding-left: 24px; margin: 0; }
+  ol.pasos li { margin-bottom: 6px; }
+  .nota { color: var(--gris); font-size: 15px; }
+  .zonas { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 14px 0; }
+  @media (max-width: 720px) { .zonas { grid-template-columns: 1fr; } }
+  .zona { border: 2px dashed #9aa3b5; border-radius: 12px; padding: 20px 16px; text-align: center; cursor: pointer; background: #fafbfd; transition: background .15s, border-color .15s; }
+  .zona:hover, .zona.activa { border-color: var(--azul); background: var(--azul-claro); }
+  .zona.lista { border-style: solid; border-color: var(--verde); background: var(--verde-claro); }
+  .zona.invalida { border-style: solid; border-color: var(--rojo); background: var(--rojo-claro); }
+  .zona input { display: none; }
+  .zona .titulo { font-weight: 700; font-size: 18px; margin-bottom: 4px; }
+  .zona .ayuda { color: var(--gris); font-size: 15px; }
+  .zona .nombre { font-weight: 600; word-break: break-all; margin-top: 6px; }
+  .zona .problema { color: var(--rojo); font-weight: 600; margin-top: 6px; }
+  .acciones { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 8px; }
+  button { font-family: inherit; }
+  button.principal { background: var(--azul); color: #fff; border: none; border-radius: 8px; padding: 14px 26px; font-size: 18px; font-weight: 600; cursor: pointer; }
+  button.principal:disabled { background: #9aa3b5; cursor: not-allowed; }
+  button.secundario { background: #fff; color: var(--azul); border: 2px solid var(--azul); border-radius: 8px; padding: 10px 16px; font-size: 15px; cursor: pointer; }
+  button.secundario:hover { background: var(--azul-claro); }
+  .ejemplos { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--borde); }
+  .ejemplos .botones { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .oculto { display: none !important; }
+  /* progreso */
+  .progreso ol { list-style: none; padding: 0; margin: 0; }
+  .progreso li { padding: 6px 0 6px 34px; position: relative; color: var(--gris); }
+  .progreso li::before { content: ""; position: absolute; left: 4px; top: 11px; width: 18px; height: 18px; border-radius: 50%; border: 2px solid #b8bfcc; background: #fff; }
+  .progreso li.activo { color: #1a1a1a; font-weight: 600; }
+  .progreso li.activo::before { border-color: var(--azul); border-top-color: transparent; animation: girar .8s linear infinite; }
+  .progreso li.hecho { color: var(--verde); }
+  .progreso li.hecho::before { border-color: var(--verde); background: var(--verde); }
+  @keyframes girar { to { transform: rotate(360deg); } }
+  /* resultados */
+  .banner { padding: 16px 18px; border-radius: 10px; font-size: 18px; font-weight: 600; margin-bottom: 16px; }
+  .banner.rojo { background: var(--rojo-claro); color: var(--rojo); border: 1px solid #f0b4ae; }
+  .banner.ambar { background: var(--ambar-claro); color: var(--ambar); border: 1px solid #e3c86e; }
+  .banner.verde { background: var(--verde-claro); color: var(--verde); border: 1px solid #a9d8b5; }
+  .resumen { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 8px; }
+  .cifra { background: var(--fondo); border-radius: 10px; padding: 12px; text-align: center; border: 1px solid var(--borde); }
+  .cifra b { display: block; font-size: 30px; line-height: 1.1; }
+  .cifra span { font-size: 14px; color: var(--gris); }
+  .cifra.rojo b { color: var(--rojo); } .cifra.ambar b { color: var(--ambar); } .cifra.info b { color: var(--info); } .cifra.verde b { color: var(--verde); }
+  .aviso { background: var(--ambar-claro); border: 1px solid #e3c86e; border-radius: 8px; padding: 10px 14px; margin-bottom: 10px; }
+  .errorbox { background: var(--rojo-claro); border: 1px solid #f0b4ae; border-radius: 12px; padding: 18px; }
+  .errorbox h2 { color: var(--rojo); }
+  table { width: 100%; border-collapse: collapse; font-size: 16px; }
+  th, td { border-bottom: 1px solid var(--borde); padding: 9px 10px; text-align: left; vertical-align: top; }
+  th { background: var(--azul-claro); color: var(--azul); }
+  td.num { text-align: center; color: var(--gris); }
+  .estado { font-weight: 600; }
+  .estado.rojo { color: var(--rojo); } .estado.ambar { color: var(--ambar); } .estado.verde { color: var(--verde); } .estado.gris { color: var(--gris); }
+  .tabla-envoltorio { overflow-x: auto; }
+  .alerta { border: 1px solid var(--borde); border-left: 6px solid; border-radius: 10px; padding: 12px 14px; margin-bottom: 12px; background: #fff; }
+  .alerta.alta { border-left-color: var(--rojo); } .alerta.media { border-left-color: #d29b00; } .alerta.baja { border-left-color: var(--info); }
+  .alerta .cabecera { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; margin-bottom: 6px; }
+  .etiqueta { display: inline-block; font-size: 13px; font-weight: 700; padding: 2px 9px; border-radius: 12px; }
+  .etiqueta.alta { background: var(--rojo-claro); color: var(--rojo); } .etiqueta.media { background: var(--ambar-claro); color: var(--ambar); } .etiqueta.baja { background: var(--info-claro); color: var(--info); }
+  .alerta .campo { font-weight: 700; }
+  .valores { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 8px 0; font-size: 15px; }
+  @media (max-width: 720px) { .valores { grid-template-columns: 1fr; } }
+  .valores div { background: var(--fondo); padding: 6px 10px; border-radius: 6px; }
+  .valores span { color: var(--gris); display: block; font-size: 13px; }
+  details { margin-top: 10px; }
+  details summary { cursor: pointer; font-weight: 600; color: var(--azul); }
+  dl.glosario dt { font-weight: 700; margin-top: 8px; } dl.glosario dd { margin: 0 0 4px; }
+  ul.docs { list-style: none; padding: 0; margin: 0; } ul.docs li { padding: 3px 0; }
+  footer { text-align: center; color: var(--gris); font-size: 14px; padding: 10px 16px 30px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="contenido">
+    <h1>Revisor de declaraciones de importación</h1>
+    <p>Compara una declaración de importación con su factura comercial y te dice qué no coincide, qué falta y qué no se pudo comprobar.</p>
+  </div>
+</header>
+
+<main>
+  <section class="tarjeta" id="explicacion">
+    <h2>¿Qué hace esta herramienta?</h2>
+    <ol class="pasos">
+      <li><strong>Lee los dos PDF</strong> que le entregas: la <em>declaración de importación</em> (el formulario con 15 casillas numeradas) y la <em>factura comercial</em> (el documento del proveedor, que es la fuente de verdad).</li>
+      <li><strong>Compara casilla por casilla</strong> lo que dice la declaración con lo que dice la factura. Entiende que un mismo dato puede escribirse de formas distintas: <em>18.540,00</em> y <em>18,450.00</em> se comparan como montos, <em>China</em> y <em>República Popular China</em> como el mismo país.</li>
+      <li><strong>Te entrega un informe</strong> con lo que no coincide, lo que quedó sin diligenciar, lo que no pudo verificar porque falta un documento y los errores de ortografía o redacción.</li>
+    </ol>
+    <p class="nota" style="margin-top:12px" id="nota-privacidad">Los documentos no se modifican. El informe es una ayuda para revisar; no reemplaza la revisión de un profesional de comercio exterior.</p>
+    <p class="nota" id="nota-analisis"></p>
+    <details>
+      <summary>Glosario rápido</summary>
+      <dl class="glosario">
+        <dt>Valor FOB</dt><dd>Precio de la mercancía puesta en el puerto de salida, sin flete ni seguro.</dd>
+        <dt>Flete y seguro</dt><dd>Lo que cuesta transportar la mercancía y asegurarla durante el viaje.</dd>
+        <dt>Valor CIF</dt><dd>Valor total de la importación: FOB + flete + seguro.</dd>
+        <dt>Incoterm</dt><dd>Condiciones de entrega pactadas con el proveedor (por ejemplo CIF Cartagena: el proveedor paga flete y seguro hasta Cartagena).</dd>
+        <dt>Bultos</dt><dd>Cajas o paquetes en que viene embalada la mercancía.</dd>
+        <dt>Documento soporte</dt><dd>Documento que respalda un dato de la declaración: la factura, la lista de empaque, el certificado de origen o el documento de transporte (BL).</dd>
+      </dl>
+    </details>
+  </section>
+
+  <section class="tarjeta" id="carga">
+    <h2>1. Selecciona los dos documentos</h2>
+    <p>Arrastra cada PDF a su recuadro o haz clic para buscarlo en tu computador. Sólo se aceptan archivos PDF de hasta 20 MB.</p>
+    <div class="zonas">
+      <div class="zona" id="zona-declaracion" tabindex="0">
+        <input type="file" id="archivo-declaracion" accept=".pdf,application/pdf">
+        <div class="titulo">Declaración de importación</div>
+        <div class="ayuda">El formulario con las casillas 1 a 15</div>
+        <div class="nombre" id="nombre-declaracion"></div>
+        <div class="problema" id="problema-declaracion"></div>
+      </div>
+      <div class="zona" id="zona-factura" tabindex="0">
+        <input type="file" id="archivo-factura" accept=".pdf,application/pdf">
+        <div class="titulo">Factura comercial</div>
+        <div class="ayuda">La factura del proveedor</div>
+        <div class="nombre" id="nombre-factura"></div>
+        <div class="problema" id="problema-factura"></div>
+      </div>
+    </div>
+    <div class="acciones">
+      <button class="principal" id="boton-revisar" disabled>Revisar documentos</button>
+      <span class="nota" id="ayuda-boton">Selecciona los dos PDF para activar el botón.</span>
+    </div>
+    <div class="ejemplos" id="ejemplos">
+      <span class="nota">¿No tienes documentos a la mano? Prueba con un caso de ejemplo:</span>
+      <div class="botones" id="botones-ejemplos"></div>
+    </div>
+  </section>
+
+  <section class="tarjeta progreso oculto" id="progreso">
+    <h2>2. Revisando…</h2>
+    <ol>
+      <li id="paso-1">Leyendo los dos PDF y comprobando que sean documentos válidos</li>
+      <li id="paso-2">Extrayendo las 15 casillas de la declaración y los datos de la factura</li>
+      <li id="paso-3">Comparando casilla por casilla y revisando la ortografía</li>
+      <li id="paso-4">Preparando el informe</li>
+    </ol>
+  </section>
+
+  <section class="tarjeta oculto" id="error">
+    <div class="errorbox">
+      <h2 id="error-titulo"></h2>
+      <p id="error-detalle"></p>
+      <p><strong>Qué hacer:</strong> <span id="error-sugerencia"></span></p>
+    </div>
+    <div class="acciones" style="margin-top:14px"><button class="secundario" id="boton-reintentar">Volver a intentarlo</button></div>
+  </section>
+
+  <section class="tarjeta oculto" id="resultado">
+    <h2>3. Informe de la revisión</h2>
+    <p id="resultado-intro"></p>
+    <div id="avisos"></div>
+    <div class="banner" id="banner"></div>
+    <div class="resumen" id="resumen"></div>
+
+    <h3>Casilla por casilla</h3>
+    <div class="tabla-envoltorio">
+      <table>
+        <thead><tr><th>#</th><th>Casilla</th><th>Lo que dice la declaración</th><th>Resultado</th></tr></thead>
+        <tbody id="tabla-casillas"></tbody>
+      </table>
+    </div>
+
+    <h3>Qué debes revisar</h3>
+    <p class="nota">Cada alerta explica qué se encontró, con el valor de la declaración y el de la factura cuando aplica.</p>
+    <div id="alertas"></div>
+
+    <h3>Documentos en la carpeta de soporte</h3>
+    <ul class="docs" id="documentos"></ul>
+
+    <details>
+      <summary>¿Qué significa cada tipo de alerta?</summary>
+      <dl class="glosario">
+        <dt>Dato distinto al de la factura</dt><dd>Lo que dice la casilla no coincide con la factura. Hay que corregir la declaración (o la factura, si la errada es ella).</dd>
+        <dt>Casilla obligatoria sin diligenciar</dt><dd>La casilla está vacía. Cuando la factura trae el dato, se muestra como referencia.</dd>
+        <dt>No se pudo verificar por falta de documento</dt><dd>El documento que respalda la casilla (lista de empaque, certificado de origen, BL) no está en la carpeta. Si la factura trae el dato, se compara con ella, pero el resultado es provisional.</dd>
+        <dt>Los valores de la declaración no cuadran entre sí</dt><dd>Por ejemplo, FOB + flete + seguro no da el CIF declarado. Algún valor está mal digitado.</dd>
+        <dt>Ortografía o redacción</dt><dd>Palabras mal escritas o sin tilde en los campos de texto, o una descripción menos completa que la de la factura.</dd>
+      </dl>
+    </details>
+
+    <div class="acciones" style="margin-top:18px">
+      <button class="secundario" id="boton-descargar">Descargar el informe (JSON)</button>
+      <button class="secundario" id="boton-nuevo">Revisar otros documentos</button>
+    </div>
+  </section>
+</main>
+<footer id="pie">Agente revisor de declaraciones de importación</footer>
+
+<script>
+(function () {
+  "use strict";
+  const LIMITE_MB = 20;
+  const ESTADOS = {
+    ok:             ["✅", "Coincide con la factura", "verde"],
+    ok_provisional: ["🟡", "Coincide con la factura, pero falta el documento que la respalda formalmente", "ambar"],
+    discrepancia:   ["❌", "No coincide con la factura", "rojo"],
+    faltante:       ["⚠️", "Sin diligenciar", "rojo"],
+    no_encontrada:  ["❓", "No se encontró en el PDF", "ambar"],
+    no_validable:   ["❓", "No se pudo verificar: falta el documento soporte", "ambar"],
+    vacia_opcional: ["—", "Vacía (opcional)", "gris"],
+  };
+  const TIPOS = {
+    discrepancia_valor: "Dato distinto al de la factura",
+    campo_faltante: "Casilla obligatoria sin diligenciar",
+    sin_documento_soporte: "No se pudo verificar por falta de documento",
+    ortografia: "Ortografía o redacción",
+    inconsistencia_interna: "Los valores de la declaración no cuadran entre sí",
+  };
+  const SEVERIDADES = { alta: "Debe corregirse", media: "Requiere un documento o confirmación", baja: "Recomendación" };
+
+  const archivos = { declaracion: null, factura: null };
+  let ultimoReporte = null;
+
+  const $ = (id) => document.getElementById(id);
+  function el(etiqueta, atributos, ...hijos) {
+    const nodo = document.createElement(etiqueta);
+    for (const [clave, valor] of Object.entries(atributos || {})) {
+      if (clave === "class") nodo.className = valor; else nodo.setAttribute(clave, valor);
+    }
+    for (const hijo of hijos) nodo.append(hijo instanceof Node ? hijo : document.createTextNode(String(hijo)));
+    return nodo;
+  }
+  function mostrarSolo(...ids) {
+    for (const id of ["carga", "progreso", "error", "resultado"]) $(id).classList.toggle("oculto", !ids.includes(id));
+  }
+
+  // ---------- selección de archivos ----------
+  function validarArchivo(archivo) {
+    if (!archivo) return "No se seleccionó ningún archivo.";
+    if (!/\.pdf$/i.test(archivo.name)) return "Este archivo no es un PDF. Selecciona un archivo .pdf.";
+    if (archivo.size === 0) return "El archivo está vacío.";
+    if (archivo.size > LIMITE_MB * 1024 * 1024) return `El archivo pesa ${(archivo.size / 1048576).toFixed(1)} MB; el máximo es ${LIMITE_MB} MB.`;
+    return "";
+  }
+  function asignar(campo, archivo) {
+    const zona = $("zona-" + campo), nombre = $("nombre-" + campo), problema = $("problema-" + campo);
+    const error = validarArchivo(archivo);
+    archivos[campo] = error ? null : archivo;
+    nombre.textContent = archivo ? `${archivo.name} (${(archivo.size / 1024).toFixed(0)} KB)` : "";
+    problema.textContent = error;
+    zona.classList.toggle("lista", !error && !!archivo);
+    zona.classList.toggle("invalida", !!error);
+    actualizarBoton();
+  }
+  function actualizarBoton() {
+    const listo = !!(archivos.declaracion && archivos.factura);
+    $("boton-revisar").disabled = !listo;
+    $("ayuda-boton").textContent = listo ? "Listo. Pulsa el botón para comparar los documentos." : "Selecciona los dos PDF para activar el botón.";
+  }
+  for (const campo of ["declaracion", "factura"]) {
+    const zona = $("zona-" + campo), entrada = $("archivo-" + campo);
+    zona.addEventListener("click", () => entrada.click());
+    zona.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); entrada.click(); } });
+    entrada.addEventListener("change", () => asignar(campo, entrada.files[0]));
+    zona.addEventListener("dragover", (e) => { e.preventDefault(); zona.classList.add("activa"); });
+    zona.addEventListener("dragleave", () => zona.classList.remove("activa"));
+    zona.addEventListener("drop", (e) => { e.preventDefault(); zona.classList.remove("activa"); asignar(campo, e.dataTransfer.files[0]); });
+  }
+
+  // ---------- progreso ----------
+  let temporizador = null;
+  function iniciarProgreso() {
+    mostrarSolo("progreso");
+    const pasos = [1, 2, 3, 4].map((n) => $("paso-" + n));
+    pasos.forEach((p) => p.classList.remove("activo", "hecho"));
+    let i = 0;
+    pasos[0].classList.add("activo");
+    temporizador = setInterval(() => {
+      if (i >= pasos.length - 1) return;   // el último paso se marca cuando llega la respuesta
+      pasos[i].classList.replace("activo", "hecho");
+      i += 1;
+      pasos[i].classList.add("activo");
+    }, 700);
+  }
+  function terminarProgreso() {
+    clearInterval(temporizador);
+    [1, 2, 3, 4].forEach((n) => { $("paso-" + n).classList.remove("activo"); $("paso-" + n).classList.add("hecho"); });
+  }
+
+  // ---------- llamadas al servidor ----------
+  async function enviar(promesa) {
+    iniciarProgreso();
+    let respuesta;
+    try {
+      const r = await promesa;
+      respuesta = await r.json();
+    } catch (e) {
+      respuesta = { ok: false, error: { titulo: "No se pudo conectar con la herramienta",
+        detalle: "La ventana del programa se cerró o el navegador no pudo comunicarse con ella.",
+        sugerencia: "Vuelve a abrir la herramienta (Iniciar_revisor.bat o python interfaz.py) y recarga esta página." } };
+    }
+    terminarProgreso();
+    setTimeout(() => respuesta.ok ? mostrarResultado(respuesta) : mostrarError(respuesta.error), 350);
+  }
+  $("boton-revisar").addEventListener("click", () => {
+    const datos = new FormData();
+    datos.append("declaracion", archivos.declaracion);
+    datos.append("factura", archivos.factura);
+    enviar(fetch("/revisar", { method: "POST", body: datos }));
+  });
+  function describirAnalisis(info) {
+    if (!info) return;
+    if (info.modo === "llm") {
+      $("nota-analisis").textContent = `Revisión de texto con modelo de lenguaje («${info.modelo}» en ${info.servicio}): para interpretar la descripción de la mercancía y revisar su ortografía, ese texto (sólo ese) se envía al servicio. Montos, fechas, códigos y el resto de la revisión se procesan en tu computador.`;
+      $("pie").textContent = `Agente revisor de declaraciones de importación · descripción analizada con el modelo «${info.modelo}»`;
+    } else {
+      $("nota-analisis").textContent = "Todo ocurre en tu computador: los documentos no se envían a internet. " + (info.aviso || "");
+      $("pie").textContent = "Agente revisor de declaraciones de importación · funciona sin conexión a internet";
+    }
+  }
+  fetch("/ejemplos").then((r) => r.json()).then((d) => {
+    describirAnalisis(d.analisis_texto);
+    const cont = $("botones-ejemplos");
+    if (!d.ejemplos || !d.ejemplos.length) { $("ejemplos").classList.add("oculto"); return; }
+    for (const ej of d.ejemplos) {
+      const b = el("button", { class: "secundario", type: "button" }, ej.nombre);
+      b.addEventListener("click", () => enviar(fetch("/revisar-ejemplo?caso=" + encodeURIComponent(ej.id))));
+      cont.append(b);
+    }
+  }).catch(() => $("ejemplos").classList.add("oculto"));
+
+  // ---------- errores ----------
+  function mostrarError(error) {
+    $("error-titulo").textContent = error.titulo || "No se pudo hacer la revisión";
+    $("error-detalle").textContent = error.detalle || "";
+    $("error-sugerencia").textContent = error.sugerencia || "Revisa los archivos e inténtalo de nuevo.";
+    mostrarSolo("carga", "error");
+    $("error").scrollIntoView({ behavior: "smooth" });
+  }
+  $("boton-reintentar").addEventListener("click", () => { mostrarSolo("carga"); window.scrollTo({ top: 0, behavior: "smooth" }); });
+
+  // ---------- resultados ----------
+  function mostrarResultado(respuesta) {
+    const rep = respuesta.reporte, res = rep.resumen, meta = rep.metadata;
+    ultimoReporte = { avisos: respuesta.avisos, ...rep };
+    const nAlta = res.por_severidad.alta || 0, nMedia = res.por_severidad.media || 0, nBaja = res.por_severidad.baja || 0;
+    const totalCasillas = rep.resumen_casillas.length;
+
+    $("resultado-intro").textContent =
+      `Se revisó la declaración ${meta.referencia_interna || ""} de ${meta.declarante || "la empresa importadora"} contra la factura comercial. ` +
+      `${res.casillas_sin_alerta.length} de ${totalCasillas} casillas no tienen ninguna observación.`;
+
+    describirAnalisis(respuesta.analisis_texto);
+    const avisos = $("avisos"); avisos.replaceChildren();
+    for (const a of respuesta.avisos || []) avisos.append(el("div", { class: "aviso" }, "Aviso: " + a));
+
+    const banner = $("banner");
+    banner.className = "banner";
+    if (nAlta > 0) { banner.classList.add("rojo"); banner.textContent = `Se encontraron ${nAlta} problema${nAlta > 1 ? "s" : ""} que deben corregirse antes de presentar la declaración.`; }
+    else if (nMedia > 0) { banner.classList.add("ambar"); banner.textContent = "No hay discrepancias con la factura, pero algunas casillas no se pudieron verificar del todo por falta de documentos."; }
+    else { banner.classList.add("verde"); banner.textContent = "Todo en orden: la declaración coincide con la factura."; }
+
+    $("resumen").replaceChildren(
+      el("div", { class: "cifra rojo" }, el("b", {}, nAlta), el("span", {}, "por corregir")),
+      el("div", { class: "cifra ambar" }, el("b", {}, nMedia), el("span", {}, "por confirmar con documentos")),
+      el("div", { class: "cifra info" }, el("b", {}, nBaja), el("span", {}, "recomendaciones")),
+      el("div", { class: "cifra verde" }, el("b", {}, res.casillas_sin_alerta.length), el("span", {}, `casillas sin observaciones (de ${totalCasillas})`)),
+    );
+
+    const cuerpo = $("tabla-casillas"); cuerpo.replaceChildren();
+    for (const fila of rep.resumen_casillas) {
+      const [icono, texto, color] = ESTADOS[fila.estado] || ["•", fila.estado, "gris"];
+      const celdaEstado = el("td", {}, el("span", { class: "estado " + color }, icono + " " + texto));
+      // Notas adicionales: alertas que no se reflejan en el estado principal de la casilla
+      const propias = rep.alertas.filter((a) => a.casilla === fila.casilla);
+      const notas = [];
+      if (propias.some((a) => a.tipo === "inconsistencia_interna")) notas.push("⚠️ Además: los valores declarados no cuadran entre sí (ver alerta)");
+      const ortografia = propias.filter((a) => a.tipo === "ortografia").length;
+      if (ortografia) notas.push(`✏️ Además: ${ortografia} hallazgo${ortografia > 1 ? "s" : ""} de ortografía o redacción`);
+      if (fila.estado === "discrepancia" && propias.some((a) => a.tipo === "sin_documento_soporte")) notas.push("❓ Y falta el documento que la respalda formalmente");
+      for (const nota of notas) celdaEstado.append(el("div", { class: "nota" }, nota));
+      cuerpo.append(el("tr", {},
+        el("td", { class: "num" }, fila.casilla),
+        el("td", {}, fila.campo),
+        el("td", {}, fila.valor_declaracion || el("em", {}, "(vacía)")),
+        celdaEstado,
+      ));
+    }
+
+    const lista = $("alertas"); lista.replaceChildren();
+    if (!rep.alertas.length) lista.append(el("p", {}, "No hay alertas. Todas las casillas coinciden con la factura."));
+    const orden = { alta: 0, media: 1, baja: 2 };
+    const alertas = [...rep.alertas].sort((a, b) => orden[a.severidad] - orden[b.severidad] || (a.casilla ?? 99) - (b.casilla ?? 99));
+    for (const a of alertas) {
+      const tarjeta = el("div", { class: "alerta " + a.severidad });
+      const cabecera = el("div", { class: "cabecera" },
+        el("span", { class: "etiqueta " + a.severidad }, SEVERIDADES[a.severidad] || a.severidad),
+        el("span", { class: "campo" }, a.casilla != null ? `Casilla ${a.casilla} · ${a.campo}` : a.campo),
+        el("span", { class: "nota" }, TIPOS[a.tipo] || a.tipo));
+      tarjeta.append(cabecera);
+      if (a.valor_declaracion != null || a.valor_fuente != null) {
+        tarjeta.append(el("div", { class: "valores" },
+          el("div", {}, el("span", {}, "En la declaración"), a.valor_declaracion ?? "—"),
+          el("div", {}, el("span", {}, a.fuente === "declaracion" ? "Lo que debería ser" : "En la factura"), a.valor_fuente ?? "—")));
+      }
+      tarjeta.append(el("p", {}, a.detalle));
+      if (a.sugerencia) tarjeta.append(el("p", {}, el("strong", {}, "Sugerencia: "), a.sugerencia));
+      if (a.analisis) {
+        const quien = a.analisis.startsWith("llm") ? `Texto analizado por el modelo de lenguaje (${a.analisis.slice(4)}).` : "Texto analizado con el método básico (sin modelo de lenguaje).";
+        tarjeta.append(el("p", { class: "nota" }, quien));
+      }
+      lista.append(tarjeta);
+    }
+
+    const docs = $("documentos"); docs.replaceChildren();
+    for (const d of Object.values(rep.documentos_soporte)) {
+      docs.append(el("li", {}, (d.disponible ? "✅ " : "❌ ") + d.nombre + (d.detalle ? " — " + d.detalle : "")));
+    }
+
+    mostrarSolo("resultado");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  $("boton-descargar").addEventListener("click", () => {
+    if (!ultimoReporte) return;
+    const blob = new Blob([JSON.stringify(ultimoReporte, null, 2)], { type: "application/json" });
+    const enlace = el("a", { href: URL.createObjectURL(blob), download: "informe_revision.json" });
+    document.body.append(enlace); enlace.click(); enlace.remove();
+  });
+  $("boton-nuevo").addEventListener("click", () => {
+    for (const campo of ["declaracion", "factura"]) { $("archivo-" + campo).value = ""; asignar(campo, null); $("zona-" + campo).classList.remove("invalida"); $("problema-" + campo).textContent = ""; }
+    mostrarSolo("carga");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+})();
+</script>
+</body>
+</html>

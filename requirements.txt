@@ -1,0 +1,2 @@
+pypdf>=4.0
+anthropic>=1.7      # opcional: revisión de texto con Claude (agente/lenguaje_claude.py)

@@ -1,0 +1,14 @@
+# Secretos: nunca subir la clave del modelo de lenguaje
+.env
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Copias duplicadas de PDF creadas por el sistema de archivos (p. ej. "archivo_1.pdf")
+ejemplos/*_1.pdf
+
+# Salidas de revisiones propias (las de los casos de ejemplo sí se versionan)
+salida/tmp_*/

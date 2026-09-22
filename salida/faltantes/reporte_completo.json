@@ -1,0 +1,527 @@
+{
+  "metadata": {
+    "fecha_revision": "2026-09-22T11:16:00",
+    "declaracion": "ejemplos\\declaracion_importacion_faltantes.pdf",
+    "factura": "ejemplos\\factura_comercial_faltantes.pdf",
+    "referencia_interna": "IMP-2026-0641",
+    "declarante": "Distribuidora Andina S.A.S."
+  },
+  "documentos_soporte": {
+    "factura_comercial": {
+      "nombre": "Factura comercial",
+      "disponible": true,
+      "detalle": "FC-2026-00520.pdf"
+    },
+    "lista_empaque": {
+      "nombre": "Lista de empaque",
+      "disponible": true,
+      "detalle": "PL-2026-00520.pdf"
+    },
+    "certificado_origen": {
+      "nombre": "Certificado de origen",
+      "disponible": false,
+      "detalle": "no se encontró en la carpeta"
+    },
+    "documento_transporte": {
+      "nombre": "BL / documento de transporte",
+      "disponible": false,
+      "detalle": "no se encontró en la carpeta"
+    }
+  },
+  "extraccion": {
+    "declaracion": [
+      {
+        "numero": 1,
+        "etiqueta": "Número de factura comercial",
+        "valor": "FC-2026-00520"
+      },
+      {
+        "numero": 2,
+        "etiqueta": "Fecha de factura",
+        "valor": "(sin diligenciar)"
+      },
+      {
+        "numero": 3,
+        "etiqueta": "Exportador",
+        "valor": "Shenzhen PowerTech Motors Co., Ltd."
+      },
+      {
+        "numero": 4,
+        "etiqueta": "Importador",
+        "valor": "Distribuidora Andina S.A.S. — NIT 900.123.456-7"
+      },
+      {
+        "numero": 5,
+        "etiqueta": "País de origen",
+        "valor": "República Popular China"
+      },
+      {
+        "numero": 6,
+        "etiqueta": "Incoterm",
+        "valor": "(sin diligenciar)"
+      },
+      {
+        "numero": 7,
+        "etiqueta": "Moneda de negociación",
+        "valor": "(sin diligenciar)"
+      },
+      {
+        "numero": 8,
+        "etiqueta": "Descripción de la mercancía",
+        "valor": "Motores electricos trifásicos de baja potencia, uso industrial, modelos PTM-075T y PTM-150T"
+      },
+      {
+        "numero": 9,
+        "etiqueta": "Cantidad (unidades)",
+        "valor": "500 unidades"
+      },
+      {
+        "numero": 10,
+        "etiqueta": "Número de bultos",
+        "valor": "25"
+      },
+      {
+        "numero": 11,
+        "etiqueta": "Peso bruto (kg)",
+        "valor": "1.290,00 kg"
+      },
+      {
+        "numero": 12,
+        "etiqueta": "Valor FOB (USD)",
+        "valor": "21.550,00"
+      },
+      {
+        "numero": 13,
+        "etiqueta": "Flete (USD)",
+        "valor": "700,00"
+      },
+      {
+        "numero": 14,
+        "etiqueta": "Seguro (USD)",
+        "valor": "110,00"
+      },
+      {
+        "numero": 15,
+        "etiqueta": "Valor CIF total (USD)",
+        "valor": "22.630,00"
+      }
+    ],
+    "factura": {
+      "archivo": "ejemplos\\factura_comercial_faltantes.pdf",
+      "numero": "FC-2026-00520",
+      "fecha": "3 de julio de 2026",
+      "exportador": {
+        "nombre": "Shenzhen PowerTech Motors Co., Ltd.",
+        "nit": null,
+        "direccion": [
+          "No. 88 Baoan Industrial Avenue",
+          "Shenzhen, Guangdong, China 518101"
+        ],
+        "texto": "Shenzhen PowerTech Motors Co., Ltd. No. 88 Baoan Industrial Avenue Shenzhen, Guangdong, China 518101"
+      },
+      "importador": {
+        "nombre": "Distribuidora Andina S.A.S.",
+        "nit": "9001234567",
+        "direccion": [
+          "NIT 900.123.456-7",
+          "Calle 24 No. 68-45, Bodega 12",
+          "Bogotá D.C., Colombia"
+        ],
+        "texto": "Distribuidora Andina S.A.S. NIT 900.123.456-7 Calle 24 No. 68-45, Bodega 12 Bogotá D.C., Colombia"
+      },
+      "pais_origen": "República Popular China",
+      "pais_embarque": "China",
+      "incoterm": "CIF Cartagena, Colombia(Incoterms 2020)",
+      "puerto_destino": "Cartagena, Colombia",
+      "moneda": "Dólares de los Estados Unidos(USD)",
+      "forma_pago": "Transferencia bancaria —30 días",
+      "items": [
+        {
+          "item": 1,
+          "descripcion": "Motores eléctricos trifásicos de baja potencia (< 0.75kW), uso industrial, modelo PTM-075T",
+          "cantidad": "300",
+          "unidad": "unidades",
+          "precio_unitario": "36.90",
+          "subtotal": "11,070.00"
+        },
+        {
+          "item": 2,
+          "descripcion": "Motores eléctricos trifásicos de media potencia (1.5kW), uso industrial, modelo PTM-150T",
+          "cantidad": "200",
+          "unidad": "unidades",
+          "precio_unitario": "52.40",
+          "subtotal": "10,480.00"
+        }
+      ],
+      "descripcion": "Motores eléctricos trifásicos de baja potencia (< 0.75kW), uso industrial, modelo PTM-075T | Motores eléctricos trifásicos de media potencia (1.5kW), uso industrial, modelo PTM-150T",
+      "cantidad": "500 unidades",
+      "fob": "21,550.00",
+      "flete": "700.00",
+      "seguro": "110.00",
+      "cif": "22,360.00",
+      "bultos": "25",
+      "unidades_por_bulto": "20",
+      "peso_bruto": "1.290,00",
+      "remite_lista_empaque": true,
+      "observaciones": "Mercancía embalada en 25 cajas de cartón (bultos), 20 unidades por caja. Peso bruto total: 1.290,00 kg. Detalle de\npesos y dimensiones por bulto: ver lista de empaque (packing list) adjunta por separado."
+    }
+  },
+  "resumen": {
+    "total_alertas": 10,
+    "por_tipo": {
+      "campo_faltante": 3,
+      "sin_documento_soporte": 3,
+      "ortografia": 2,
+      "discrepancia_valor": 1,
+      "inconsistencia_interna": 1
+    },
+    "por_severidad": {
+      "alta": 5,
+      "media": 3,
+      "baja": 2
+    },
+    "casillas_con_alerta": [
+      2,
+      5,
+      6,
+      7,
+      8,
+      10,
+      11,
+      15
+    ],
+    "casillas_sin_alerta": [
+      1,
+      3,
+      4,
+      9,
+      12,
+      13,
+      14
+    ]
+  },
+  "resumen_casillas": [
+    {
+      "casilla": 1,
+      "campo": "Número de factura comercial",
+      "valor_declaracion": "FC-2026-00520",
+      "soportes": [
+        "Factura comercial"
+      ],
+      "validado_contra": "Factura comercial",
+      "estado": "ok",
+      "alertas": 0
+    },
+    {
+      "casilla": 2,
+      "campo": "Fecha de factura",
+      "valor_declaracion": "(sin diligenciar)",
+      "soportes": [
+        "Factura comercial"
+      ],
+      "validado_contra": null,
+      "estado": "faltante",
+      "alertas": 1
+    },
+    {
+      "casilla": 3,
+      "campo": "Exportador",
+      "valor_declaracion": "Shenzhen PowerTech Motors Co., Ltd.",
+      "soportes": [
+        "Factura comercial"
+      ],
+      "validado_contra": "Factura comercial",
+      "estado": "ok",
+      "alertas": 0
+    },
+    {
+      "casilla": 4,
+      "campo": "Importador",
+      "valor_declaracion": "Distribuidora Andina S.A.S. — NIT 900.123.456-7",
+      "soportes": [
+        "Factura comercial"
+      ],
+      "validado_contra": "Factura comercial",
+      "estado": "ok",
+      "alertas": 0
+    },
+    {
+      "casilla": 5,
+      "campo": "País de origen",
+      "valor_declaracion": "República Popular China",
+      "soportes": [
+        "Certificado de origen",
+        "Factura comercial"
+      ],
+      "validado_contra": "Factura comercial",
+      "estado": "ok_provisional",
+      "alertas": 1
+    },
+    {
+      "casilla": 6,
+      "campo": "Incoterm",
+      "valor_declaracion": "(sin diligenciar)",
+      "soportes": [
+        "Factura comercial"
+      ],
+      "validado_contra": null,
+      "estado": "faltante",
+      "alertas": 1
+    },
+    {
+      "casilla": 7,
+      "campo": "Moneda de negociación",
+      "valor_declaracion": "(sin diligenciar)",
+      "soportes": [
+        "Factura comercial"
+      ],
+      "validado_contra": null,
+      "estado": "faltante",
+      "alertas": 1
+    },
+    {
+      "casilla": 8,
+      "campo": "Descripción de la mercancía",
+      "valor_declaracion": "Motores electricos trifásicos de baja potencia, uso industrial, modelos PTM-075T y PTM-150T",
+      "soportes": [
+        "Factura comercial"
+      ],
+      "validado_contra": "Factura comercial",
+      "estado": "ok",
+      "alertas": 0
+    },
+    {
+      "casilla": 9,
+      "campo": "Cantidad (unidades)",
+      "valor_declaracion": "500 unidades",
+      "soportes": [
+        "Factura comercial"
+      ],
+      "validado_contra": "Factura comercial",
+      "estado": "ok",
+      "alertas": 0
+    },
+    {
+      "casilla": 10,
+      "campo": "Número de bultos",
+      "valor_declaracion": "25",
+      "soportes": [
+        "Lista de empaque",
+        "Factura comercial"
+      ],
+      "validado_contra": "Factura comercial",
+      "estado": "ok_provisional",
+      "alertas": 1
+    },
+    {
+      "casilla": 11,
+      "campo": "Peso bruto (kg)",
+      "valor_declaracion": "1.290,00 kg",
+      "soportes": [
+        "Lista de empaque",
+        "BL / documento de transporte",
+        "Factura comercial"
+      ],
+      "validado_contra": "Factura comercial",
+      "estado": "ok_provisional",
+      "alertas": 1
+    },
+    {
+      "casilla": 12,
+      "campo": "Valor FOB (USD)",
+      "valor_declaracion": "21.550,00",
+      "soportes": [
+        "Factura comercial"
+      ],
+      "validado_contra": "Factura comercial",
+      "estado": "ok",
+      "alertas": 0
+    },
+    {
+      "casilla": 13,
+      "campo": "Flete (USD)",
+      "valor_declaracion": "700,00",
+      "soportes": [
+        "Factura comercial",
+        "BL / documento de transporte"
+      ],
+      "validado_contra": "Factura comercial",
+      "estado": "ok",
+      "alertas": 0
+    },
+    {
+      "casilla": 14,
+      "campo": "Seguro (USD)",
+      "valor_declaracion": "110,00",
+      "soportes": [
+        "Factura comercial"
+      ],
+      "validado_contra": "Factura comercial",
+      "estado": "ok",
+      "alertas": 0
+    },
+    {
+      "casilla": 15,
+      "campo": "Valor CIF total (USD)",
+      "valor_declaracion": "22.630,00",
+      "soportes": [
+        "Factura comercial"
+      ],
+      "validado_contra": "Factura comercial",
+      "estado": "discrepancia",
+      "alertas": 1
+    }
+  ],
+  "verificaciones_factura": [
+    {
+      "regla": "subtotal ítem 1 = cantidad × precio unitario",
+      "cumple": true,
+      "detalle": "300 × 36.90 = 11.070,00 vs subtotal 11.070,00"
+    },
+    {
+      "regla": "subtotal ítem 2 = cantidad × precio unitario",
+      "cumple": true,
+      "detalle": "200 × 52.40 = 10.480,00 vs subtotal 10.480,00"
+    },
+    {
+      "regla": "FOB = suma de subtotales",
+      "cumple": true,
+      "detalle": "suma 21.550,00 vs FOB 21.550,00"
+    },
+    {
+      "regla": "CIF = FOB + flete + seguro",
+      "cumple": true,
+      "detalle": "21.550,00 + 700,00 + 110,00 = 22.360,00 vs CIF 22.360,00"
+    }
+  ],
+  "analisis_texto": {
+    "revisor": "heuristico",
+    "avisos": [],
+    "casillas": {
+      "8": {
+        "equivalencia": "equivalente",
+        "confianza": 1.0,
+        "explicacion": "100% de los términos de la declaración aparecen en la descripción de la factura.",
+        "terminos_omitidos": [
+          "0.75kW",
+          "media",
+          "1.5kW"
+        ],
+        "hallazgos": 1,
+        "origen": "heuristico"
+      }
+    }
+  },
+  "alertas": [
+    {
+      "casilla": 2,
+      "campo": "Fecha de factura",
+      "tipo": "campo_faltante",
+      "severidad": "alta",
+      "valor_declaracion": "(sin diligenciar)",
+      "valor_fuente": "3 de julio de 2026",
+      "fuente": "factura_comercial",
+      "detalle": "La casilla es obligatoria y quedó sin diligenciar. Referencia disponible en la factura comercial: 3 de julio de 2026."
+    },
+    {
+      "casilla": 5,
+      "campo": "País de origen",
+      "tipo": "sin_documento_soporte",
+      "severidad": "media",
+      "valor_declaracion": "República Popular China",
+      "valor_fuente": "República Popular China",
+      "fuente": "factura_comercial",
+      "detalle": "La casilla se validó contra la factura comercial porque su soporte formal (Certificado de origen) no está en la carpeta. El resultado es provisional hasta contrastarla con ese documento."
+    },
+    {
+      "casilla": 6,
+      "campo": "Incoterm",
+      "tipo": "campo_faltante",
+      "severidad": "alta",
+      "valor_declaracion": "(sin diligenciar)",
+      "valor_fuente": "CIF Cartagena, Colombia(Incoterms 2020)",
+      "fuente": "factura_comercial",
+      "detalle": "La casilla es obligatoria y quedó sin diligenciar. Referencia disponible en la factura comercial: CIF Cartagena, Colombia(Incoterms 2020)."
+    },
+    {
+      "casilla": 7,
+      "campo": "Moneda de negociación",
+      "tipo": "campo_faltante",
+      "severidad": "alta",
+      "valor_declaracion": "(sin diligenciar)",
+      "valor_fuente": "Dólares de los Estados Unidos(USD)",
+      "fuente": "factura_comercial",
+      "detalle": "La casilla es obligatoria y quedó sin diligenciar. Referencia disponible en la factura comercial: Dólares de los Estados Unidos(USD)."
+    },
+    {
+      "casilla": 8,
+      "campo": "Descripción de la mercancía",
+      "tipo": "ortografia",
+      "severidad": "baja",
+      "valor_declaracion": "electricos",
+      "valor_fuente": null,
+      "fuente": null,
+      "detalle": "[acentuacion] «electricos» debería llevar tilde: «eléctricos».",
+      "sugerencia": "eléctricos",
+      "analisis": "heuristico"
+    },
+    {
+      "casilla": 8,
+      "campo": "Descripción de la mercancía",
+      "tipo": "ortografia",
+      "severidad": "baja",
+      "valor_declaracion": "Motores electricos trifásicos de baja potencia, uso industrial, modelos PTM-075T y PTM-150T",
+      "valor_fuente": "Motores eléctricos trifásicos de baja potencia (< 0.75kW), uso industrial, modelo PTM-075T | Motores eléctricos trifásicos de media potencia (1.5kW), uso industrial, modelo PTM-150T",
+      "fuente": "factura_comercial",
+      "detalle": "[redaccion] La descripción es compatible con la factura pero menos específica: omite «0.75kW», «media», «1.5kW». Se recomienda incluir modelo y características técnicas para facilitar la clasificación arancelaria.",
+      "analisis": "heuristico"
+    },
+    {
+      "casilla": 10,
+      "campo": "Número de bultos",
+      "tipo": "sin_documento_soporte",
+      "severidad": "media",
+      "valor_declaracion": "25",
+      "valor_fuente": "25",
+      "fuente": "factura_comercial",
+      "detalle": "La casilla se validó contra la factura comercial porque su soporte formal (Lista de empaque) está en la carpeta pero esta versión del agente sólo procesa la factura comercial. El resultado es provisional hasta contrastarla con ese documento."
+    },
+    {
+      "casilla": 11,
+      "campo": "Peso bruto (kg)",
+      "tipo": "sin_documento_soporte",
+      "severidad": "media",
+      "valor_declaracion": "1.290,00 kg",
+      "valor_fuente": "1.290,00",
+      "fuente": "factura_comercial",
+      "detalle": "La casilla se validó contra la factura comercial porque su soporte formal (Lista de empaque) está en la carpeta pero esta versión del agente sólo procesa la factura comercial. El resultado es provisional hasta contrastarla con ese documento."
+    },
+    {
+      "casilla": 15,
+      "campo": "Valor CIF total (USD)",
+      "tipo": "discrepancia_valor",
+      "severidad": "alta",
+      "valor_declaracion": "22.630,00",
+      "valor_fuente": "22,360.00",
+      "fuente": "factura_comercial",
+      "detalle": "El valor declarado (22.630,00) no coincide con el de la factura comercial (22,360.00). Diferencia: 270,00. Los dígitos son los mismos en distinto orden: posible transposición al digitar."
+    },
+    {
+      "casilla": 15,
+      "campo": "Valor CIF total (USD)",
+      "tipo": "inconsistencia_interna",
+      "severidad": "alta",
+      "valor_declaracion": "22.630,00",
+      "valor_fuente": "22.360,00",
+      "fuente": "declaracion",
+      "detalle": "Valor CIF total = FOB + flete + seguro: 21.550,00 (casilla 12) + 700,00 (casilla 13) + 110,00 (casilla 14) = 22.360,00, pero la casilla 15 declara 22.630,00. Diferencia: -270,00. La(s) casilla(s) 15 ya presenta(n) discrepancia frente a la factura; el error probablemente está allí.",
+      "casillas_relacionadas": [
+        12,
+        13,
+        14,
+        15
+      ]
+    }
+  ],
+  "avisos": []
+}
